@@ -9,6 +9,7 @@ import { useEffect } from 'react'
 import { setToken } from './redux/firebaseTokenSlice'
 import { useDispatch } from 'react-redux'
 import { lazy, Suspense } from 'react'
+import SavedJobs from './components/SavedJobs'
 const Login = lazy(() => import('./components/auth/Login'))
 const Signup = lazy(() => import('./components/auth/Signup'))
 const Home = lazy(() => import('./components/Home'))
@@ -53,6 +54,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />
+  },
+  {
+    path: "saved-jobs",
+    element: <SavedJobs />
   },
   // New Roadmaps routes
   {
