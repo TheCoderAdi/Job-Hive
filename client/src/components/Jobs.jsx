@@ -54,6 +54,12 @@ const Jobs = () => {
     setFilteredJobs(filteredJobs);
   }, [allJobs, searchedQuery, selectedLocation, selectedIndustry, selectedSalary]);
 
+  const removeJobHandler = (job)=>{
+    const jobs = localStorage.getItem('savedJobs') ? JSON.parse(localStorage.getItem('savedJobs')) : []
+    const newJob = jobs.filter(j => j._id !== job._id)  
+    localStorage.setItem('savedJobs', JSON.stringify(newJob))
+  }
+
   return (
     <div>
       <Navbar />
@@ -87,7 +93,7 @@ const Jobs = () => {
                     transition={{ duration: 0.3 }}
                     key={job?._id}
                   >
-                    <Job job={job} />
+                    <Job job={job} removeJobHandler={removeJobHandler}/>
                   </motion.div>
                 ))}
               </div>
